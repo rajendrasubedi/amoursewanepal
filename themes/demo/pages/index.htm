@@ -1,0 +1,297 @@
+url = "/"
+layout = "home"
+title = "Demonstration"
+meta_title = "Welcome"
+
+[collection blog]
+handle = "Blog\Post"
+
+[resources]
+less[] = "pages/index.less"
+
+[builderList homeaboutsection]
+modelClass = "Rajendra\HomePage\Models\Aboutsection"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "id"
+noRecordsMessage = "No records found"
+detailsPage = "-"
+detailsUrlParameter = "id"
+recordsPerPage = 1
+pageNumber = "{{ :page }}"
+
+[builderList homefirstrow]
+modelClass = "Rajendra\HomePage\Models\FirstRow"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "id"
+noRecordsMessage = "No records found"
+detailsPage = "-"
+detailsUrlParameter = "id"
+pageNumber = "{{ :page }}"
+
+[builderList donationlist]
+modelClass = "Rajendra\HomePage\Models\DonateSection"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "id"
+noRecordsMessage = "No records found"
+detailsPage = "-"
+detailsUrlParameter = "id"
+pageNumber = "{{ :page }}"
+==
+{% set latestPosts = blog.limit(3).get %}
+<div class="page-index">
+    <div class="jumbotron">
+        <div class="container">
+            <div class="row">
+                {% for record in homefirstrow.records %}
+                    <div class="col-lg-6">
+                            <div class="jumbotron-intro">
+                                <h1>{{ record.title }}</h1>
+                                {# <h1>Welcome to Amour sewa Nepal!</h1> #}
+                                <p class="lead">
+                                    {{ record.description }}
+                                </p>
+                                <p>
+                                    {% if backendUrl %}
+                                        <a href="{{ backendUrl }}" target="backend" class="btn btn-outline-light btn-pill">
+                                            Backend Area!!
+                                        </a>
+                                    {% else %}
+                                        <a href="#" target="_blank" class="btn btn-outline-light btn-pill">
+                                            Donate Here!!
+                                        </a>
+                                    {% endif %}
+                                </p>
+                            </div>
+                        
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="jumbotron-product">
+                            {# <img src="{{ 'assets/images/homepage/home_flex.jpg'|theme }}" class="img-fluid" alt="Product Shot" /> #}
+                            <img 
+                                src="{{ record.fleximagebanner.path }}" 
+                                class="img-fluid" 
+                                width="700" 
+                                alt="{{ record.fleximagebanner.file_name }}"
+                            />
+                        </div>
+                    </div>
+                {% else %}
+                    <p>{{ builderList.noRecordsMessage }}</p>
+                {% endfor %}
+            </div>
+            <div class="jumbotron-decoration-1"></div>
+            <div class="jumbotron-decoration-2"></div>
+        </div>
+    </div>
+
+
+    <div class="intro">
+        <div class="container">
+                {# {% for record in homefirstrow.records %}
+                    <img 
+                        src="{{ record.fleximagebanner.path }}" 
+                        class="img-fluid" 
+                        width="200" 
+                        alt="{{ record.fleximagebanner.file_name }}"
+                    />
+                {% else %}
+                    <p>{{ builderList.noRecordsMessage }}</p>
+                {% endfor %} #}
+                <h2>About Us</h2>
+                {# Added #}
+                {% for record in homeaboutsection.records %}
+                <div class="row">
+                    <div class="col-lg-5 offset-lg-1">
+                        <div class="feature-content">
+                            <h3>{{ record.frstrwtitle }}</h3>
+                            <p style="text-align: justify">{{ record.firstrowtext }}</p>
+                            <a href="https://docs.octobercms.com/3.x/cms/themes/layouts.html" target="_blank" class="btn btn-outline-primary btn-pill">Learn more about Layouts</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="feature-image">
+                            <img 
+                                src="{{ record.firstrowimage.path }}" 
+                                class="img-fluid" 
+                                width="400" 
+                                alt="{{ record.firstrowimage.file_name }}"
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-lg-5">
+                    <div class="col-lg-6">
+                        <div class="feature-image">
+                            <img 
+                                src="{{ record.secondrowimage.path }}" 
+                                class="img-fluid" 
+                                width="400" 
+                                alt="{{ record.secondrowimage.file_name }}"
+                            />
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="feature-content">
+                            <h3>{{ record.scndrwtitle }}</h3>
+                            <p style="text-align: justify">{{ record.secondrowtext }}</p>
+                            <a href="https://docs.octobercms.com/3.x/cms/themes/pages.html" target="_blank" class="btn btn-outline-primary btn-pill">Learn more about Pages</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-lg-5">
+                    <div class="col-lg-5 offset-lg-1">
+                        <div class="feature-content">
+                            <h3>{{ record.thrdrwtitle }}</h3>
+                            <p style="text-align: justify">{{ record.thirdrowtext }}</p>
+                            <a href="https://docs.octobercms.com/3.x/cms/themes/layouts.html" target="_blank" class="btn btn-outline-primary btn-pill">Learn more about Layouts</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="feature-image">
+                            <img 
+                                src="{{ record.thirdrowimage.path }}" 
+                                class="img-fluid" 
+                                width="400" 
+                                alt="{{ record.thirdrowimage.file_name }}"
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-lg-5">
+                    <div class="col-lg-6">
+                        <div class="feature-image">
+                            <img 
+                                src="{{ record.fourthrowimage.path }}" 
+                                class="img-fluid" 
+                                width="500" 
+                                alt="{{ record.fourthrowimage.file_name }}"
+                            />
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="feature-content">
+                            <h3>{{ record.forthrwtitle }}</h3>
+                                <p style="text-align: justify">{{ record.fourthrowtext }}</p>
+                            <a href="https://docs.octobercms.com/3.x/cms/themes/pages.html" target="_blank" class="btn btn-outline-primary btn-pill">Learn more about Pages</a>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <p>{{ builderList.noRecordsMessage }}</p>
+            {% endfor %}
+            {# End Added #}
+        </div>
+    </div>
+
+    <div class="actioncall">
+        <div class="container">
+            <h3>Donate Here!!</h3>
+            {% for record in donationlist.records %}
+                <p class="lead">Bank Name: {{ record.bnk_name }}
+                    <button onclick="copyToClipboard(' {{ record.bnk_name }} ')" class="btn btn-sm btn-outline-primary">Copy</button>
+                </p>
+                <p class="lead">Account Holder Name: {{ record.acc_holder_name }}
+                    <button onclick="copyToClipboard(' {{ record.acc_holder_name }} ')" class="btn btn-sm btn-outline-primary">Copy</button>
+                </p>
+                <p class="lead">
+                    Account Number: {{ record.acc_no }}
+                    <button onclick="copyToClipboard(' {{ record.acc_no }} ')" class="btn btn-sm btn-outline-primary">Copy</button>
+                </p>
+                <p class="lead">
+                    Branch Code: {{ record.bnk_code }}
+                    <button onclick="copyToClipboard(' {{ record.bnk_code }} ')" class="btn btn-sm btn-outline-primary">Copy</button>
+                </p>
+                <p class="lead">
+                    Swift Code: {{ record.swift_code }}
+                    <button onclick="copyToClipboard(' {{ record.swift_code }}')" class="btn btn-sm btn-outline-primary">Copy</button>
+                </p>
+
+                <p class="lead">
+                    <img
+                        src="{{ record.qrcode.path }}" 
+                        class="img-fluid" 
+                        alt="{{ record.qrcode.file_name }}"
+                    />                
+                </p>
+                <a href="#" target="_blank" class="btn btn-primary btn-lg btn-pill">Digital Payment Coming Soon!!</a>
+            {% else %}
+               <p>{{ builderList.noRecordsMessage }}</p>
+           {% endfor %}
+        </div>
+    </div>
+
+    <!-- Popup container -->
+    <div id="copySuccessPopup" class="popup" style="display: none;">
+        <p>Copied to clipboard!</p>
+    </div>
+
+    <style>
+        .popup {
+            position: fixed;
+            bottom: 10px;
+            right: 20px;
+            background: #28a745;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            animation: fadein 0.5s, fadeout 0.5s 4.5s;
+        }
+
+        @keyframes fadein {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeout {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+    </style>
+
+    <script>
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                // Show the popup
+                const popup = document.getElementById('copySuccessPopup');
+                popup.style.display = 'block';
+
+                // Hide the popup after 5 seconds
+                setTimeout(() => {
+                    popup.style.display = 'none';
+                }, 5000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+    </script>
+
+
+    <div class="latestnews">
+        <div class="container">
+            <h3>Latest News</h3>
+
+            <div class="blog-featured row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3 pb-5">
+                {% for post in latestPosts %}
+                    {% partial 'blog/post-card' post=post %}
+                {% endfor %}
+            </div>
+        </div>
+    z</div>
+</div>

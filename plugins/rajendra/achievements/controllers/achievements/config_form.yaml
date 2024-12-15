@@ -1,0 +1,11 @@
+name: Achievements
+modelClass: Rajendra\Achievements\Models\Achievement
+form: $/rajendra/achievements/models/achievement/fields.yaml
+defaultRedirect: rajendra/achievements/achievements
+create:
+    redirect: 'rajendra/achievements/achievements/update/:id'
+    redirectClose: rajendra/achievements/achievements
+update:
+    redirect: rajendra/achievements/achievements
+    redirectClose: rajendra/achievements/achievements
+preview: {  }

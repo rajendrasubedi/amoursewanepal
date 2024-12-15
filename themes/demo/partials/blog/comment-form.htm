@@ -1,0 +1,14 @@
+[commentForm]
+postId = 0
+
+[viewBag]
+snippetCode = "comment_form"
+snippetName = "Comment Form"
+snippetDescription = "Allows users to post comments on a blog post"
+snippetAjax = 1
+==
+<div class="blog-post-comment-form">
+    <h3 class="mb-4">Tell us what you think!</h3>
+    {% component 'commentForm' %}
+
+</div>

@@ -1,0 +1,15 @@
+columns:
+    title:
+        label: Title
+        type: text
+        searchable: true
+        sortable: true
+    description:
+        label: Description
+        type: text
+        searchable: true
+    created_at:
+        label: 'Post Date'
+        type: datetime
+        searchable: true
+        sortable: true

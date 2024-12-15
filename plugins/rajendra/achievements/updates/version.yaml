@@ -1,0 +1,11 @@
+v1.0.1:
+    - 'Initialize plugin'
+v1.0.2:
+    - 'Created table rajendra_achievements_amour'
+    - builder_table_create_rajendra_achievements_amour.php
+v1.0.3:
+    - 'Updated table rajendra_achievements_amour'
+    - builder_table_update_rajendra_achievements_amour.php
+v1.0.4:
+    - 'Updated table rajendra_achievements_amour'
+    - builder_table_update_rajendra_achievements_amour_2.php

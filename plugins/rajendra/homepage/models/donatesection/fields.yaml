@@ -1,0 +1,40 @@
+fields:
+    bnk_name:
+        label: 'Bank Name'
+        span: auto
+        placeholder: 'Enter Your Bank Name...'
+        required: 1
+        type: text
+    acc_holder_name:
+        label: 'Account Holder Name'
+        span: auto
+        placeholder: 'Enter Your Account Holder Name...'
+        required: 1
+        type: text
+    acc_no:
+        label: 'Account Number'
+        span: auto
+        placeholder: 'Enter Your Account Number...'
+        required: 1
+        type: number
+    bnk_code:
+        label: 'Branch Code'
+        span: auto
+        placeholder: 'Enter Your Bank Branch Code...'
+        required: 1
+        type: number
+    swift_code:
+        label: 'Swift Code'
+        span: auto
+        placeholder: 'Enter Swift Code here...'
+        type: text
+    qrcode:
+        label: 'Qr code/Image'
+        mode: image
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: auto
+        required: 0
+        type: fileupload

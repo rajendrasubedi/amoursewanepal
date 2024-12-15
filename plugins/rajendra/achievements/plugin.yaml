@@ -1,0 +1,11 @@
+plugin:
+    name: 'rajendra.achievements::lang.plugin.name'
+    description: 'rajendra.achievements::lang.plugin.description'
+    author: Rajendra
+    icon: oc-icon-adn
+    homepage: ''
+navigation:
+    main-menu-item:
+        label: Achievements
+        url: rajendra/achievements/achievements
+        icon: icon-trophy

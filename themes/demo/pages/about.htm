@@ -1,0 +1,24 @@
+url = "/about"
+layout = "default"
+title = "About Page"
+meta_title = "{{ aboutpage.title }}"
+
+[section aboutpage]
+handle = "Page\About"
+
+[resources]
+vars[activeNavLink] = "about"
+==
+{% put headerAfter %}
+    <div class="container">
+        <div class="header-extra text-center">
+            <h1 class="mb-4">Hello! This is Amour Sewa Nepal Children's Home!</h1>
+            <p class="lead">Amour sewa nepal is a non profit organization, that mainly takes care of orphan children, it is located in phedikola, syangza, nepal.</p>
+        </div>
+    </div>
+{% endput %}
+<main class="header-flush">
+    {% for block in aboutpage.blocks %}
+        {% partial 'blocks/' ~ str_slug(block.type) block=block %}
+    {% endfor %}
+</main>

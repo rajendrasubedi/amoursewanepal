@@ -1,0 +1,12 @@
+title: Donation
+modelClass: Rajendra\HomePage\Models\DonateSection
+list: $/rajendra/homepage/models/donatesection/columns.yaml
+recordUrl: 'rajendra/homepage/donation/update/:id'
+noRecordsMessage: 'backend::lang.list.no_records'
+recordsPerPage: 20
+showSetup: true
+showCheckboxes: true
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'

@@ -1,0 +1,22 @@
+columns:
+    created_at:
+        label: 'Created date'
+        type: datetime
+    bnk_name:
+        label: 'Bank Name'
+        type: text
+    acc_holder_name:
+        label: 'Account Holder Name'
+        type: text
+    acc_no:
+        label: 'Account Number'
+        type: number
+    bnk_code:
+        label: 'Bank Code'
+        type: number
+    swift_code:
+        label: 'Swift Code'
+        type: text
+    qrcode:
+        label: 'Image/QR Code'
+        type: text

@@ -1,0 +1,16 @@
+columns:
+    created_at:
+        label: 'Created Date'
+        type: datetime
+        sortable: true
+    title:
+        label: Title
+        type: text
+        searchable: true
+    description:
+        label: Description
+        type: text
+        searchable: true
+    fleximagebanner:
+        label: 'Flex Banner'
+        type: text

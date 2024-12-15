@@ -1,0 +1,14 @@
+fields:
+    title:
+        label: Title
+        span: full
+        placeholder: 'Enter Title'
+        required: 1
+        type: text
+    description:
+        label: Description
+        size: giant
+        span: full
+        placeholder: 'Enter Description'
+        required: 1
+        type: richeditor

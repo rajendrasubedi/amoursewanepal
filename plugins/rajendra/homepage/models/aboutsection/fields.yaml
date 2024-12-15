@@ -1,0 +1,82 @@
+fields:
+    frstrwtitle:
+        label: 'First Row Title'
+        span: auto
+        placeholder: 'Enter First Row Title Here...'
+        type: text
+    firstrowimage:
+        label: 'First Row Image'
+        mode: image
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        maxFilesize: '5'
+        span: auto
+        type: fileupload
+    firstrowtext:
+        label: 'First Row'
+        size: giant
+        span: full
+        placeholder: 'Enter First Row Text for home page'
+        required: 0
+        type: textarea
+    scndrwtitle:
+        label: 'Second Row Title'
+        span: auto
+        placeholder: 'Enter Second Row Title Here...'
+        type: text
+    secondrowimage:
+        label: 'Second row Image'
+        mode: image
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: auto
+        type: fileupload
+    secondrowtext:
+        label: 'Second Row'
+        size: giant
+        span: full
+        placeholder: 'Enter Second row text'
+        required: 0
+        type: textarea
+    thrdrwtitle:
+        label: 'Third Row Title'
+        span: auto
+        placeholder: 'Enter Third row title Here...'
+        type: text
+    thirdrowimage:
+        label: 'Third Image'
+        mode: image
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: auto
+        type: fileupload
+    thirdrowtext:
+        label: 'Third Row'
+        size: giant
+        span: full
+        type: textarea
+    forthrwtitle:
+        label: 'Fourth Row Title'
+        span: auto
+        placeholder: 'Enter Fourth Row Title Here...'
+        type: text
+    fourthrowimage:
+        label: 'Fourth Row Image'
+        mode: image
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: auto
+        type: fileupload
+    fourthrowtext:
+        label: 'Fourth Row Text'
+        size: giant
+        span: full
+        type: textarea

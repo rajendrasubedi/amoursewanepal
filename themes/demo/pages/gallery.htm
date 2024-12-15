@@ -1,0 +1,145 @@
+url = "/gallery"
+layout = "default"
+title = "gallery"
+==
+<?php
+use Media\Classes\MediaLibrary;
+
+function onStart() {
+    // Define the gallery folder path
+    $folderPath = '/gallery';
+
+    // Get all items (files and folders) in the folder
+    $mediaItems = MediaLibrary::instance()->listFolderContents($folderPath);
+
+    // Filter images
+    $this['galleryImages'] = array_filter($mediaItems, function ($item) {
+        return $item->type === 'file' && in_array(strtolower(pathinfo($item->path, PATHINFO_EXTENSION)), ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp']);
+    });
+
+    // Filter videos
+    $this['galleryVideos'] = array_filter($mediaItems, function ($item) {
+        return $item->type === 'file' && in_array(strtolower(pathinfo($item->path, PATHINFO_EXTENSION)), ['mp4', 'webm', 'avi', 'mov']);
+    });
+
+    // Convert each file path to its public URL
+    $this['galleryImages'] = array_map(function ($item) {
+        return MediaLibrary::url($item->path);
+    }, $this['galleryImages']);
+
+    $this['galleryVideos'] = array_map(function ($item) {
+        return MediaLibrary::url($item->path);
+    }, $this['galleryVideos']);
+}
+?>
+==
+<div class="gallery-page">
+    <div class="container my-5 py-4">
+        <div class="row">
+            <!-- Display images -->
+            {% for image in galleryImages %}
+            <div class="col-md-4 mb-3">
+                <img src="{{ image }}" class="img-fluid" alt="Gallery Image" data-bs-toggle="modal" data-bs-target="#mediaModal" data-bs-media="{{ image }}" data-bs-type="image">
+            </div>
+            {% endfor %}
+
+            <!-- Display videos -->
+            {% for video in galleryVideos %}
+            <div class="col-md-4 mb-3">
+                <video class="img-fluid" controls data-bs-toggle="modal" data-bs-target="#mediaModal" data-bs-media="{{ video }}" data-bs-type="video">
+                    <source src="{{ video }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- Modal for displaying image/video -->
+<div class="modal fade" id="mediaModal" tabindex="-1" aria-labelledby="mediaModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <!-- Media will be dynamically inserted here -->
+                <img id="modalImage" src="" class="img-fluid" alt="Gallery Image" style="display:none;">
+                <video id="modalVideo" class="img-fluid" controls style="display:none;">
+                    <source id="videoSource" src="" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Custom CSS for Fullscreen Image -->
+<style>
+    /* Fullscreen Media Modal */
+    #mediaModal .modal-dialog {
+        max-width: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    #mediaModal .modal-content {
+        height: 100%;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+    }
+
+    #mediaModal .modal-body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        background-color: transparent;
+        padding: 0;
+    }
+
+    #modalImage, #modalVideo {
+        width: auto;
+        max-height: 100vh;
+        max-width: 100%;
+        object-fit: contain;
+    }
+</style>
+
+<!-- JavaScript to Handle Modal -->
+<script>
+    // Ensure Bootstrap Modal works with dynamic content
+    var myModal = new bootstrap.Modal(document.getElementById('mediaModal'), {
+        keyboard: true
+    });
+
+    // Listen for the modal show event
+    document.addEventListener('DOMContentLoaded', function() {
+        var mediaItems = document.querySelectorAll('[data-bs-toggle="modal"]');
+        mediaItems.forEach(function(item) {
+            item.addEventListener('click', function() {
+                var mediaSrc = item.getAttribute('data-bs-media');
+                var mediaType = item.getAttribute('data-bs-type');
+
+                // Hide both image and video elements by default
+                document.getElementById('modalImage').style.display = 'none';
+                document.getElementById('modalVideo').style.display = 'none';
+
+                if (mediaType === 'image') {
+                    document.getElementById('modalImage').src = mediaSrc;
+                    document.getElementById('modalImage').style.display = 'block';  // Show the image
+                } else if (mediaType === 'video') {
+                    document.getElementById('videoSource').src = mediaSrc;
+                    document.getElementById('modalVideo').style.display = 'block';  // Show the video
+                    document.getElementById('modalVideo').load();  // Reload the video source to play
+                }
+
+                myModal.show();
+            });
+        });
+    });
+</script>

@@ -1,0 +1,65 @@
+url = "/contact"
+layout = "default"
+title = "Contact Us"
+meta_title = "Get in touch!"
+
+[resources]
+less[] = "pages/contact.less"
+vars[activeNavLink] = "contact"
+vars[blueFooterStyle] = 1
+==
+<div class="page-contact">
+    <div class="container my-5 py-4">
+        <div class="row">
+            <div class="col-lg-4">
+                <h1>Ready for Get in touch with Us!</h1>
+                <p class="py-4">Amour sewa nepal is a non profit organization, that mainly takes care of orphan children, it is located in phedikola, syangza, nepal!</p>
+
+                <div class="contact-options">
+                    <div class="option mb-2 d-flex">
+                        <div class="pe-3">
+                            <img src="{{ 'assets/images/icons/icon-address.png'|theme }}" width="42" alt="" />
+                        </div>
+                        <div>
+                            <h3 class="my-1">Address</h3>
+                            <p>Phedikhola RM-01, Syangja Nepal</p>
+                        </div>
+                    </div>
+                    <div class="option mb-2 d-flex">
+                        <div class="pe-3">
+                            <img src="{{ 'assets/images/icons/icon-email.png'|theme }}" width="42" alt="" />
+                        </div>
+                        <div>
+                            <h3 class="my-1">Email</h3>
+                            <p><a href="mailto:amoursewa2022@gmail.com">amoursewa2022@gmail.com</a></p>
+                        </div>
+                    </div>
+                    <div class="option mb-2 d-flex">
+                        <div class="pe-3">
+                            <img src="{{ 'assets/images/icons/icon-phone.png'|theme }}" width="42" alt="" />
+                        </div>
+                        <div>
+                            <h3 class="my-1">Phone</h3>
+                            <p><a href="tel:+977-9856052121">+977-9856052121</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7 offset-lg-1">
+                <img src="{{ 'assets/images/contact/team.png'|theme }}" class="img-fluid" alt="Team Shot" />
+            </div>
+        </div>
+    </div>
+
+    <div class="contactform">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    {% ajaxPartial 'about/contact-form' %}
+                    <div class="contactform-decoration-1"></div>
+                    <div class="contactform-decoration-2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

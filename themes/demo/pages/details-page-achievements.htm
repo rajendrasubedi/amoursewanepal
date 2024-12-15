@@ -1,0 +1,28 @@
+url = "/achievements/:id"
+layout = "blog"
+title = "details page achievements"
+
+[builderDetails]
+modelClass = "Rajendra\Achievements\Models\Achievement"
+identifierValue = "{{ :id }}"
+modelKeyColumn = "id"
+displayColumn = "id"
+notFoundMessage = "Record not found"
+==
+<h2>{{ builderDetails.record.title }}</h2>
+
+{# Remove HTML tags and limit the description length, excluding the image #}
+{# <p>{{ builderDetails.record.description | striptags | str_limit(50) }}</p> #}
+
+{# Display the description with image included (without stripping tags) #}
+<div class="description-with-image">
+    {{ builderDetails.record.description | raw }}
+</div>
+
+<style>
+    .description-with-image img {
+        max-width: 100%;
+        height: auto;
+        object-fit: contain; /* Ensures image maintains aspect ratio */
+    }
+</style>

@@ -1,0 +1,24 @@
+plugin:
+    name: 'rajendra.homepage::lang.plugin.name'
+    description: 'rajendra.homepage::lang.plugin.description'
+    author: Rajendra
+    icon: oc-icon-adn
+    homepage: ''
+navigation:
+    main-menu-item:
+        label: 'Home Page'
+        url: /
+        icon: icon-home
+        sideMenu:
+            side-menu-item:
+                label: 'Home First Row'
+                url: rajendra/homepage/homefirstrowsection
+                icon: icon-home
+            side-menu-item2:
+                label: 'Home About Section'
+                url: rajendra/homepage/homepageaboutsection
+                icon: icon-home
+            side-menu-item3:
+                label: 'Donation Section'
+                url: /rajendra/homepage/donation
+                icon: icon-money

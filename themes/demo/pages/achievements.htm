@@ -1,0 +1,182 @@
+url = "/achievements"
+layout = "blog"
+title = "achievements"
+
+[builderList]
+modelClass = "Rajendra\Achievements\Models\Achievement"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "title"
+noRecordsMessage = "No records found"
+detailsPage = "details-page-achievements"
+detailsKeyColumn = "id"
+detailsUrlParameter = "id"
+sortColumn = "title"
+sortDirection = "desc"
+==
+<?php
+public function registerMarkupTags()
+{
+    return [
+        'filters' => [
+            'regex_replace' => function ($text, $pattern, $replacement) {
+                return preg_replace($pattern, $replacement, $text);
+            }
+        ]
+    ];
+}
+?>
+==
+<style>
+    /* Container styling */
+    .blog-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        padding: 20px;
+    }
+
+    /* Individual card styling */
+    .blog-card {
+        background-color: #ffffff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .blog-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Header styling */
+    .blog-card-header {
+        padding: 16px;
+        background-color: #f4f4f4;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .blog-title {
+        font-size: 1.5rem;
+        margin: 0;
+        color: #333;
+    }
+
+    .blog-title a {
+        text-decoration: none;
+        color: #007BFF;
+        transition: color 0.3s;
+    }
+
+    .blog-title a:hover {
+        color: #0056b3;
+    }
+
+    /* Image styling */
+    .blog-card-image {
+        position: relative;
+        width: 100%;
+        padding-top: 56.25%; /* Aspect ratio 16:9 */
+    }
+
+    .blog-card-image img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* Body styling */
+    .blog-card-body {
+        padding: 16px;
+    }
+
+    .blog-description {
+        color: #666;
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    /* Footer styling */
+    .blog-card-footer {
+        padding: 16px;
+        background-color: #f9f9f9;
+        border-top: 1px solid #ddd;
+        text-align: right;
+    }
+
+    .read-more {
+        color: #007BFF;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s;
+    }
+
+    .read-more:hover {
+        color: #0056b3;
+    }
+
+    /* Pagination styling */
+    .pagination {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .pagination a {
+        padding: 10px 15px;
+        margin: 0 5px;
+        text-decoration: none;
+        background-color: #007BFF;
+        color: #fff;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+    }
+
+    .pagination a:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+<div class="blog-container">
+    {% for record in builderList.records %}
+        <div class="blog-card">
+            <div class="blog-card-header">
+                <h2 class="blog-title">
+                    <a href="/achievements/{{ record.id }}">{{ record.title }}</a>
+                </h2>
+            </div>
+
+            {# Image handling: Extract and display image from description #}
+            <div class="blog-card-image">
+                {% set firstImage = record.description | raw | split('<img', 2)[1] %}
+                {% if firstImage %}
+                    {% set firstImageSrc = firstImage | split('src="', 2)[1] | split('"', 2)[0] %}
+                    <img src="{{ firstImageSrc }}" alt="{{ record.title }}" />
+                {% endif %}
+            </div>
+
+            <div class="blog-card-body">
+                {# Remove all HTML tags and limit description length #}
+                {% set descriptionWithoutImage = record.description | striptags %}
+                <p class="blog-description">
+                    {{ descriptionWithoutImage | raw | str_limit(100) }}
+                </p>
+            </div>
+
+            <div class="blog-card-footer">
+                <a href="/achievements/{{ record.id }}" class="read-more">Read More</a>
+            </div>
+        </div>
+    {% else %}
+        <p>{{ builderList.noRecordsMessage }}</p>
+    {% endfor %}
+
+    <!-- Display Pagination -->
+    <div class="pagination">
+        {{ builderList.pagination }}
+    </div>
+</div>

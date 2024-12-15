@@ -1,0 +1,55 @@
+columns:
+    created_at:
+        label: 'Created Date'
+        type: datetime
+        searchable: true
+        sortable: true
+    frstrwtitle:
+        label: 'First Title'
+        type: text
+        searchable: true
+        sortable: false
+    scndrwtitle:
+        label: 'Second Title'
+        type: text
+        searchable: true
+    thrdrwtitle:
+        label: 'Third Title'
+        type: text
+        searchable: true
+    forthrwtitle:
+        label: 'Fourth Title'
+        type: text
+        searchable: true
+    firstrowtext:
+        label: 'First Description'
+        type: text
+        searchable: true
+    secondrowtext:
+        label: 'Second Description'
+        type: text
+        searchable: true
+    thirdrowtext:
+        label: 'Third Description'
+        type: text
+        searchable: true
+    fourthrowtext:
+        label: 'Fourth Description'
+        type: text
+        searchable: true
+    firstrowimage:
+        label: 'First Image'
+        type: text
+        searchable: false
+    secondrowimage:
+        label: 'Second Image'
+        type: text
+        searchable: false
+    thirdrowimage:
+        label: 'Third Image'
+        type: text
+        searchable: false
+    fourthrowimage:
+        label: 'Fourth Image'
+        type: text
+        searchable: false

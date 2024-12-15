@@ -1,0 +1,11 @@
+name: Donation
+modelClass: Rajendra\HomePage\Models\DonateSection
+form: $/rajendra/homepage/models/donatesection/fields.yaml
+defaultRedirect: rajendra/homepage/donation
+create:
+    redirect: 'rajendra/homepage/donation/update/:id'
+    redirectClose: rajendra/homepage/donation
+update:
+    redirect: rajendra/homepage/donation
+    redirectClose: rajendra/homepage/donation
+preview: {  }

@@ -1,0 +1,10 @@
+name: HomeFirstRowSection
+form: $/rajendra/homepage/models/firstrow/fields.yaml
+modelClass: Rajendra\HomePage\Models\FirstRow
+defaultRedirect: rajendra/homepage/homefirstrowsection
+create:
+    redirect: 'rajendra/homepage/homefirstrowsection/update/:id'
+    redirectClose: rajendra/homepage/homefirstrowsection
+update:
+    redirect: rajendra/homepage/homefirstrowsection
+    redirectClose: rajendra/homepage/homefirstrowsection

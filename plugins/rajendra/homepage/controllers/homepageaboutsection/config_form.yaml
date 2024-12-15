@@ -1,0 +1,11 @@
+name: HomePageAboutSection
+modelClass: Rajendra\HomePage\Models\Aboutsection
+form: $/rajendra/homepage/models/aboutsection/fields.yaml
+defaultRedirect: rajendra/homepage/homepageaboutsection
+create:
+    redirect: 'rajendra/homepage/homepageaboutsection/update/:id'
+    redirectClose: rajendra/homepage/homepageaboutsection
+update:
+    redirect: rajendra/homepage/homepageaboutsection
+    redirectClose: rajendra/homepage/homepageaboutsection
+preview: {  }
